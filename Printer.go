@@ -198,13 +198,7 @@ func WithJustifyRight() func(IPrinter) error {
 
 func WithSize(height, width uint8) func(IPrinter) error {
 	return func(i IPrinter) error {
-		if height > 8 {
-			return fmt.Errorf("char height must be between 0 and 8")
-		}
-		if width > 8 {
-			return fmt.Errorf("char width must be between 0 and 8")
-		}
-		return i.WriteRaw([]byte{_ESC, _EXC, (((width - 1) << 4) | (height - 1))})
+		return i.WriteRaw([]byte{_GS, _EXC, (((width - 1) << 4) | (height - 1))})
 	}
 }
 
