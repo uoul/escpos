@@ -121,7 +121,7 @@ func (n *Printer) Cut() error {
 	if err := n.WriteRaw([]byte{_GS, 'V', 66, 30}); err != nil {
 		return err
 	}
-	return n.Print("")
+	return nil
 }
 
 // Print implements IPrinter.
