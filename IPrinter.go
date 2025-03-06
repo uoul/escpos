@@ -1,12 +1,16 @@
 package escpos
 
 type IPrinter interface {
+	// Get printer state
 	GetPrinterState() (PrinterState, error)
 	GetOffLineState() (OffLineState, error)
 	GetErrorState() (ErrorState, error)
 	GetFeedState() (FeedState, error)
 
+	// Print test
 	Print(text string, opts ...func(IPrinter) error) error
+
+	// Cut
 	Cut() error
 
 	WriteRaw(b []byte) error
