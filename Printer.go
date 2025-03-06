@@ -9,20 +9,20 @@ import (
 // Constants
 // --------------------------------------------------------------------------------
 const (
-	_ESC  = 0x1B
-	_GS   = 0x1D
-	_LF   = 0x0A
+	_ESC  = 0x1b
+	_GS   = 0x1d
+	_LF   = 0x0a
 	_DLE  = 0x10
 	_EOT  = 0x04
 	_AT   = 0x40
-	_DASH = 0x2D
+	_DASH = 0x2d
 	_EXC  = 0x21
 
-	_J = 0x4A
+	_J = 0x4a
 	_G = 0x47
 	_E = 0x45
 	_B = 0x42
-	_M = 0x4D
+	_M = 0x4d
 	_V = 0x56
 	_a = 0x61
 )
@@ -118,7 +118,7 @@ func (n *Printer) WriteRaw(b []byte) error {
 
 // Cut implements IPrinter.
 func (n *Printer) Cut() error {
-	return n.WriteRaw([]byte{_GS, 0x56, 66, 30})
+	return n.WriteRaw([]byte{_GS, 'V', 66, 30})
 }
 
 // Print implements IPrinter.
