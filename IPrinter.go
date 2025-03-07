@@ -7,8 +7,19 @@ type IPrinter interface {
 	GetErrorState() (ErrorState, error)
 	GetFeedState() (FeedState, error)
 
-	// Print test
+	// Print text
 	Print(text string, opts ...func(IPrinter) error) error
+
+	// Print Barcodes
+	PrintUpcA(code string, opts ...func(IPrinter) error) error
+	PrintUpcE(code string, opts ...func(IPrinter) error) error
+	PrintEan13(code string, opts ...func(IPrinter) error) error
+	PrintEan8(code string, opts ...func(IPrinter) error) error
+	PrintItf(code string, opts ...func(IPrinter) error) error
+	PrintCodabar(code string, opts ...func(IPrinter) error) error
+	PrintCode39(code string, opts ...func(IPrinter) error) error
+	PrintCode93(code string, opts ...func(IPrinter) error) error
+	PrintCode128(code string, opts ...func(IPrinter) error) error
 
 	// Cut
 	Cut() error
