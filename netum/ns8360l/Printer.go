@@ -196,25 +196,25 @@ func (n *Printer) PrintQrCode(code string, ec byte, componentType byte, opts ...
 // Options
 // --------------------------------------------------------------------------------
 
-func WithNegativ() func(escpos.IPrinter) error {
+func (n *Printer) WithNegativ() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'B', 1})
 	}
 }
 
-func WithFontA() func(escpos.IPrinter) error {
+func (n *Printer) WithFontA() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'M', '0'})
 	}
 }
 
-func WithFontB() func(escpos.IPrinter) error {
+func (n *Printer) WithFontB() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'M', '1'})
 	}
 }
 
-func WithUnderline(thickness int) func(escpos.IPrinter) error {
+func (n *Printer) WithUnderline(thickness int) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		if thickness < 0 || thickness > 2 {
 			return fmt.Errorf("underline thickness has to be between 0 and 2")
@@ -223,97 +223,97 @@ func WithUnderline(thickness int) func(escpos.IPrinter) error {
 	}
 }
 
-func WithEmphasize() func(escpos.IPrinter) error {
+func (n *Printer) WithEmphasize() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'E', 1})
 	}
 }
 
-func WithRotation() func(escpos.IPrinter) error {
+func (n *Printer) WithRotation() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'V', '1'})
 	}
 }
 
-func WithJustifyLeft() func(escpos.IPrinter) error {
+func (n *Printer) WithJustifyLeft() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'a', '0'})
 	}
 }
 
-func WithJustifyCenter() func(escpos.IPrinter) error {
+func (n *Printer) WithJustifyCenter() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'a', '1'})
 	}
 }
 
-func WithJustifyRight() func(escpos.IPrinter) error {
+func (n *Printer) WithJustifyRight() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, 'a', '2'})
 	}
 }
 
-func WithSize(height, width uint8) func(escpos.IPrinter) error {
+func (n *Printer) WithSize(height, width uint8) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, '!', (((width - 1) << 4) | (height - 1))})
 	}
 }
 
-func WithLineSpacing(space uint8) func(escpos.IPrinter) error {
+func (n *Printer) WithLineSpacing(space uint8) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_ESC, '3', space})
 	}
 }
 
-func WithBarcodeHight(hight uint8) func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHight(hight uint8) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'h', hight})
 	}
 }
 
-func WithBarcodeWidth(width uint8) func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeWidth(width uint8) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'w', width})
 	}
 }
 
-func WithBarcodeStartingPos(pos uint8) func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeStartingPos(pos uint8) func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'x', pos})
 	}
 }
 
-func WithBarcodeHriFontA() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHriFontA() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'f', '0'})
 	}
 }
 
-func WithBarcodeHriFontB() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHriFontB() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'f', '1'})
 	}
 }
 
-func WithBarcodeNoHri() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeNoHri() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'H', '0'})
 	}
 }
 
-func WithBarcodeHriTop() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHriTop() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'H', '1'})
 	}
 }
 
-func WithBarcodeHriBottom() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHriBottom() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'H', '2'})
 	}
 }
 
-func WithBarcodeHriTopAndBottom() func(escpos.IPrinter) error {
+func (n *Printer) WithBarcodeHriTopAndBottom() func(escpos.IPrinter) error {
 	return func(i escpos.IPrinter) error {
 		return i.WriteRaw([]byte{_GS, 'H', '3'})
 	}

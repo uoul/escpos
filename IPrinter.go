@@ -19,6 +19,27 @@ type IPrinter interface {
 	PrintCode93(code string, opts ...func(IPrinter) error) error
 	PrintCode128(code string, opts ...func(IPrinter) error) error
 	PrintQrCode(code string, ec byte, componentType byte, opts ...func(IPrinter) error) error
+	// Options
+	WithNegativ() func(IPrinter) error
+	WithFontA() func(IPrinter) error
+	WithFontB() func(IPrinter) error
+	WithUnderline(thickness int) func(IPrinter) error
+	WithEmphasize() func(IPrinter) error
+	WithRotation() func(IPrinter) error
+	WithJustifyLeft() func(IPrinter) error
+	WithJustifyCenter() func(IPrinter) error
+	WithJustifyRight() func(IPrinter) error
+	WithSize(height, width uint8) func(IPrinter) error
+	WithLineSpacing(space uint8) func(IPrinter) error
+	WithBarcodeHight(hight uint8) func(IPrinter) error
+	WithBarcodeWidth(width uint8) func(IPrinter) error
+	WithBarcodeStartingPos(pos uint8) func(IPrinter) error
+	WithBarcodeHriFontA() func(IPrinter) error
+	WithBarcodeHriFontB() func(IPrinter) error
+	WithBarcodeNoHri() func(IPrinter) error
+	WithBarcodeHriTop() func(IPrinter) error
+	WithBarcodeHriBottom() func(IPrinter) error
+	WithBarcodeHriTopAndBottom() func(IPrinter) error
 	// Cut
 	Cut() error
 	// Write binary
