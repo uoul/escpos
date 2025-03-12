@@ -12,7 +12,6 @@ package main
 
 import (
 	"os"
-
   "github.com/uoul/escpos"
 )
 
@@ -23,28 +22,28 @@ func main() {
 	}
 	defer f.Close()
 
-	printer := escpos.NewPrinter(f)
+	p := ns8360l.NewPrinter(f)
 
-	printer.Print(
+	p.Print(
 		"Hello World",
-		escpos.WithFontB(),
-		escpos.WithSize(8, 8),
-		escpos.WithUnderline(2),
-		escpos.WithJustifyCenter(),
+		p.WithFontB(),
+		p.WithSize(8, 8),
+		p.WithUnderline(2),
+		p.WithJustifyCenter(),
 		// options only effects given text
 	)
 
-	printer.Print(
+	p.Print(
 		"Hello Mars",
-		escpos.WithFontA(),
-		escpos.WithSize(5, 5),
-		escpos.WithUnderline(2),
-		escpos.WithJustifyLeft(),
-		escpos.WithEmphasize(),
+		p.WithFontA(),
+		p.WithSize(5, 5),
+		p.WithUnderline(2),
+		p.WithJustifyLeft(),
+		p.WithEmphasize(),
 		// options only effects given text
 	)
 
-	printer.Cut()
+	p.Cut()
 
 }
 ```
