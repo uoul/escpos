@@ -6,10 +6,8 @@ type IPrinter interface {
 	GetOffLineState() (OffLineState, error)
 	GetErrorState() (ErrorState, error)
 	GetFeedState() (FeedState, error)
-
 	// Print text
 	Print(text string, opts ...func(IPrinter) error) error
-
 	// Print Barcodes
 	PrintUpcA(code string, opts ...func(IPrinter) error) error
 	PrintUpcE(code string, opts ...func(IPrinter) error) error
@@ -20,10 +18,10 @@ type IPrinter interface {
 	PrintCode39(code string, opts ...func(IPrinter) error) error
 	PrintCode93(code string, opts ...func(IPrinter) error) error
 	PrintCode128(code string, opts ...func(IPrinter) error) error
-
+	PrintQrCode(code string, ec byte, componentType byte, opts ...func(IPrinter) error) error
 	// Cut
 	Cut() error
-
+	// Write binary
 	WriteRaw(b []byte) error
 }
 
